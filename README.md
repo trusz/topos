@@ -30,6 +30,9 @@ plus fCoSE):
 - **ELK: Stress** — distances reflect coupling; good for spotting clusters.
 - **ELK: Force / Radial / Tree** and **fCoSE** (organic).
 
+An **Edges** dropdown switches edge routing — **Curved** (bezier), **Straight**, **Step**
+(orthogonal), or **Smooth step** (rounded orthogonal). Purely visual; applied instantly.
+
 Layout runs when the graph's **structure** changes — on first load, when you open/close a
 folder, on Collapse all / Expand all, when you pick a layout, or via the **Re-layout**
 button. **Dragging** a node never triggers a layout: it stays where you put it and nothing

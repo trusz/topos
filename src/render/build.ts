@@ -28,6 +28,7 @@ export function renderHtml(graph: GraphModel): string {
   <span class="spacer"></span>
   <span class="stats">${graph.nodes.filter((n) => n.type === "file").length} files · ${graph.edges.length} imports</span>
   <label class="ctl">Layout <select id="layout"></select></label>
+  <label class="ctl">Edges <select id="edge-style"></select></label>
   <label class="ctl"><input type="checkbox" id="type-only" checked /> type-only imports</label>
   <button id="collapse-all">Collapse all</button>
   <button id="expand-all">Expand all</button>
