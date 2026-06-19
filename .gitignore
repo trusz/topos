@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.log
+import-graph.html
+example/graph.html
+.playwright-mcp
