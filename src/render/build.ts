@@ -33,7 +33,7 @@ export function renderHtml(graph: GraphModel): string {
   <button id="fit">Fit</button>
 </header>
 <div id="cy"></div>
-<footer id="hint">Click a folder to collapse / expand it. Numbers on edges = how many imports they summarize.</footer>
+<footer id="hint">Click a folder to collapse / expand it. Edge numbers = imports summarized. On each box, <strong>↓</strong> = incoming imports, <strong>↑</strong> = outgoing (for a folder, edges crossing its boundary).</footer>
 <script id="graph-data" type="application/json">${dataJson}</script>
 <script>${viewerJs}</script>
 <script>
