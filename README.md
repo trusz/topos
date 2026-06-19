@@ -8,6 +8,33 @@ Click any folder to **collapse** it: its subtree folds into one node, internal i
 disappear, and the imports crossing its boundary become weighted, directional aggregated
 edges (e.g. `module1 ──2──▶ module2`). Click again to expand.
 
+Each box also shows coupling metrics:
+
+- `↓<incoming> ↑<outgoing>` — for a folder, the import edges crossing its subtree boundary
+  (independent of collapse state).
+- `I <decimal>` — **instability** (Martin's metric) = `out / (in + out)`: `0` = stable
+  (depended upon, depends on little), `1` = unstable (depends on much, nothing depends on it).
+  Shown to two decimals, e.g. `I 0.25`; `I –` when the box has no edges.
+
+A **type-only imports** checkbox in the toolbar shows/hides edges that are *exclusively*
+`import type` (edges that also carry a runtime import stay). Toggling it updates the edges,
+the counts, and the instability metric together.
+
+### Layouts
+
+A **Layout** dropdown in the toolbar (powered by [ELK](https://github.com/kieler/elkjs)
+plus fCoSE):
+
+- **ELK: Layered** (default) — hierarchical, edges flow top-down by dependency direction.
+  Best for reading "what imports what".
+- **ELK: Stress** — distances reflect coupling; good for spotting clusters.
+- **ELK: Force / Radial / Tree** and **fCoSE** (organic).
+
+Layout runs when the graph's **structure** changes — on first load, when you open/close a
+folder, on Collapse all / Expand all, when you pick a layout, or via the **Re-layout**
+button. **Dragging** a node never triggers a layout: it stays where you put it and nothing
+else moves.
+
 ## Install / build
 
 ```bash

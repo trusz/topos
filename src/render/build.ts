@@ -27,13 +27,15 @@ export function renderHtml(graph: GraphModel): string {
   <span class="root" title="${escapeHtml(graph.root)}">${escapeHtml(graph.root)}</span>
   <span class="spacer"></span>
   <span class="stats">${graph.nodes.filter((n) => n.type === "file").length} files · ${graph.edges.length} imports</span>
+  <label class="ctl">Layout <select id="layout"></select></label>
+  <label class="ctl"><input type="checkbox" id="type-only" checked /> type-only imports</label>
   <button id="collapse-all">Collapse all</button>
   <button id="expand-all">Expand all</button>
   <button id="relayout">Re-layout</button>
   <button id="fit">Fit</button>
 </header>
 <div id="cy"></div>
-<footer id="hint">Click a folder to collapse / expand it. Edge numbers = imports summarized. On each box, <strong>↓</strong> = incoming imports, <strong>↑</strong> = outgoing (for a folder, edges crossing its boundary).</footer>
+<footer id="hint">Click a folder to collapse / expand it (the layout re-runs; dragging a node leaves the rest in place). Edge numbers = imports summarized. On each box, <strong>↓</strong> = incoming imports, <strong>↑</strong> = outgoing (for a folder, edges crossing its boundary), and <strong>I</strong> = instability = out/(in+out) (0 = stable, 1 = unstable).</footer>
 <script id="graph-data" type="application/json">${dataJson}</script>
 <script>${viewerJs}</script>
 <script>
@@ -89,6 +91,8 @@ body { display: flex; flex-direction: column; height: 100vh; background: #f8fafc
 #toolbar .stats { color: #475569; font-size: 12px; margin-right: 6px; }
 #toolbar button { font: inherit; font-size: 13px; padding: 4px 10px; border: 1px solid #cbd5e1; border-radius: 6px; background: #f1f5f9; color: #1e293b; cursor: pointer; }
 #toolbar button:hover { background: #e2e8f0; }
+#toolbar .ctl { font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 5px; }
+#toolbar select { font: inherit; font-size: 13px; padding: 3px 6px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; color: #1e293b; cursor: pointer; }
 #cy { flex: 1; width: 100%; }
 #hint { padding: 6px 14px; font-size: 12px; color: #64748b; background: #ffffff; border-top: 1px solid #e2e8f0; }
 `;
