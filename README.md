@@ -58,8 +58,48 @@ import-explorer <root> [options]
   --kinds <list>        import kinds to include
                         (static,reexport,sideeffect,type,dynamic,require;
                          default: static,reexport,sideeffect,type)
-  --json                also write the graph model as JSON next to the HTML
+  --json                machine-readable JSON (with --metrics), or write the graph
+                        model next to the HTML
+  --tree                print an ASCII tree with in/out/instability metrics to
+                        stdout (no HTML is written)
+  --depth <n>           max tree depth to print with --tree (default: unlimited)
+  -m, --metrics <path>  print in/out/instability for a file or folder (repeatable,
+                        comma-separated); stdout, no HTML. Combine with --json.
 ```
+
+### Tree output
+
+`import-explorer ./src --tree` prints the project as an ASCII tree. Every file and folder
+is annotated with `↓ <incoming> ↑ <outgoing> I <instability>`, where folder values are the
+imports crossing that folder's subtree boundary:
+
+```
+.
+├── module2/ ↓ 3 ↑ 2 I 0,4000
+│   ├── module2.ts ↓ 3 ↑ 2 I 0,4000
+│   └── side.ts ↓ 1 ↑ 0 I 0,0000
+└── main.ts ↓ 0 ↑ 4 I 1,0000
+```
+
+Limit the printed depth with `--depth <n>` (folder aggregates still reflect the full
+subtree, only the printing is truncated).
+
+### Metrics for specific paths
+
+Query individual files/folders without rendering the whole tree:
+
+```
+$ import-explorer ./src -m src/module2 -m src/main.ts
+src/module2     ↓ 3 ↑ 2 I 0,4000
+src/main.ts     ↓ 0 ↑ 4 I 1,0000
+
+$ import-explorer ./src --metrics src/module2 --json
+[ { "path": "src/module2", "id": "src/module2", "found": true,
+    "incoming": 3, "outgoing": 2, "instability": 0.4 } ]
+```
+
+Paths may be given relative to the cwd or to the scan root. Unknown paths are reported on
+stderr (and `found: false` in JSON).
 
 Exclude globs are matched relative to `<root>`. `node_modules` is always skipped.
 Type-only imports (`import type { T } from './t'`) are included by default; drop them with
