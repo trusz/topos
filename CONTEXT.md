@@ -1,4 +1,4 @@
-# Context — Import Explorer
+# Context — Topos
 
 A glossary of the domain language used in this project. No implementation details.
 

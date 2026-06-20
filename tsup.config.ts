@@ -10,7 +10,7 @@ export default defineConfig([
     entry: { viewer: "src/render/viewer.ts" },
     format: ["iife"],
     platform: "browser",
-    globalName: "ImportExplorerViewer",
+    globalName: "ToposViewer",
     outDir: "dist",
     minify: true,
     clean: true,

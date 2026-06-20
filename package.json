@@ -1,10 +1,10 @@
 {
-  "name": "import-explorer",
+  "name": "topos",
   "version": "0.1.0",
-  "description": "CLI that visualizes cross-file import graphs for TypeScript/React/Vue/Svelte projects as a self-contained interactive HTML graph.",
+  "description": "Topos — CLI that visualizes cross-file import graphs for TypeScript/React/Vue/Svelte projects as a self-contained interactive HTML graph.",
   "type": "module",
   "bin": {
-    "import-explorer": "dist/cli.js"
+    "topos": "dist/cli.js"
   },
   "files": [
     "dist"

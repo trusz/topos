@@ -11,7 +11,7 @@ import type { GraphModel } from "../types.js";
 export function renderHtml(graph: GraphModel): string {
   const viewerJs = readViewerBundle();
   const dataJson = safeJson(graph);
-  const title = `Import graph — ${graph.root}`;
+  const title = `Topos — ${graph.root}`;
 
   return `<!doctype html>
 <html lang="en">
@@ -23,7 +23,7 @@ export function renderHtml(graph: GraphModel): string {
 </head>
 <body>
 <header id="toolbar">
-  <span class="title">Import Explorer</span>
+  <span class="title">Topos</span>
   <span class="root" title="${escapeHtml(graph.root)}">${escapeHtml(graph.root)}</span>
   <span class="spacer"></span>
   <span class="stats">${graph.nodes.filter((n) => n.type === "file").length} files · ${graph.edges.length} imports</span>
@@ -42,8 +42,8 @@ export function renderHtml(graph: GraphModel): string {
 <script>
   (function () {
     var model = JSON.parse(document.getElementById("graph-data").textContent);
-    window.__IMPORT_GRAPH__ = model;
-    window.ImportExplorerViewer.mount(model, document.getElementById("cy"));
+    window.__TOPOS_GRAPH__ = model;
+    window.ToposViewer.mount(model, document.getElementById("cy"));
   })();
 </script>
 </body>

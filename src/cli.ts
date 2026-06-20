@@ -20,30 +20,30 @@ const ALL_KINDS: SpecifierKind[] = [
 const program = new Command();
 
 program
-  .name("import-explorer")
-  .description("Visualize cross-file import graphs for TS/React/Vue/Svelte projects.")
+  .name("topos")
+  .description("Topos — visualize cross-file import graphs for TS/React/Vue/Svelte projects.")
   .addHelpText(
     "after",
     `
 Examples:
   # Interactive HTML graph of ./src
-  $ import-explorer ./src -o graph.html
+  $ topos ./src -o graph.html
 
   # Exclude tests and config files
-  $ import-explorer ./src -e '**/*.test.ts' -e '**/*.config.*'
+  $ topos ./src -e '**/*.test.ts' -e '**/*.config.*'
 
   # Ignore type-only imports
-  $ import-explorer ./src --kinds static,reexport,sideeffect
+  $ topos ./src --kinds static,reexport,sideeffect
 
   # ASCII tree with in/out/instability metrics, two levels deep
-  $ import-explorer ./src --tree --depth 2
+  $ topos ./src --tree --depth 2
 
   # Metrics for specific files/folders (machine-readable)
-  $ import-explorer ./src -m src/store -m src/api/client.ts --json
+  $ topos ./src -m src/store -m src/api/client.ts --json
 `,
   )
   .argument("<root>", "root directory to scan")
-  .option("-o, --out <file>", "output HTML file", "import-graph.html")
+  .option("-o, --out <file>", "output HTML file", "topos.html")
   .option("--tsconfig <file>", "path to tsconfig.json (defaults to nearest)")
   .option("--no-gitignore", "do not honor .gitignore")
   .option(

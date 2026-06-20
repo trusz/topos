@@ -1,4 +1,4 @@
-# Import Explorer
+# Topos
 
 A CLI that scans a TypeScript / React / Vue / Svelte project, resolves what every file
 imports, and emits a **single self-contained interactive HTML graph**. Files are boxes;
@@ -48,9 +48,9 @@ npm run build
 ## Usage
 
 ```bash
-import-explorer <root> [options]
+topos <root> [options]
 
-  -o, --out <file>      output HTML file (default: import-graph.html)
+  -o, --out <file>      output HTML file (default: topos.html)
   --tsconfig <file>     path to tsconfig.json (default: nearest)
   --no-gitignore        do not honor .gitignore
   -e, --exclude <glob>  glob to exclude from scanning; repeatable or comma-separated,
@@ -69,7 +69,7 @@ import-explorer <root> [options]
 
 ### Tree output
 
-`import-explorer ./src --tree` prints the project as an ASCII tree. Every file and folder
+`topos ./src --tree` prints the project as an ASCII tree. Every file and folder
 is annotated with `↓ <incoming> ↑ <outgoing> I <instability>`, where folder values are the
 imports crossing that folder's subtree boundary:
 
@@ -89,11 +89,11 @@ subtree, only the printing is truncated).
 Query individual files/folders without rendering the whole tree:
 
 ```
-$ import-explorer ./src -m src/module2 -m src/main.ts
+$ topos ./src -m src/module2 -m src/main.ts
 src/module2     ↓ 3 ↑ 2 I 0,4000
 src/main.ts     ↓ 0 ↑ 4 I 1,0000
 
-$ import-explorer ./src --metrics src/module2 --json
+$ topos ./src --metrics src/module2 --json
 [ { "path": "src/module2", "id": "src/module2", "found": true,
     "incoming": 3, "outgoing": 2, "instability": 0.4 } ]
 ```
