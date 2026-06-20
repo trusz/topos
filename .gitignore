@@ -4,3 +4,4 @@ dist/
 topos.html
 example/graph.html
 .playwright-mcp
+topos-*.tgz

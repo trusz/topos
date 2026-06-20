@@ -38,12 +38,27 @@ folder, on Collapse all / Expand all, when you pick a layout, or via the **Re-la
 button. **Dragging** a node never triggers a layout: it stays where you put it and nothing
 else moves.
 
-## Install / build
+## Install
+
+### Homebrew
+
+```bash
+brew install trusz/tap/topos
+```
+
+### From source
 
 ```bash
 npm install
 npm run build
 ```
+
+### Releasing (maintainer)
+
+`./build.sh` builds and packages `topos-<version>.tgz` (printing its sha256);
+`./publish.sh` tags the commit and creates the GitHub release with that tarball. Then bump
+`Formula/topos.rb` in [trusz/homebrew-tap](https://github.com/trusz/homebrew-tap) with the
+new url + sha256.
 
 ## Usage
 

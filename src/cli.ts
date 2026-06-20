@@ -8,6 +8,9 @@ import { computeDegrees, instability } from "./metrics.js";
 import { DEFAULT_KINDS } from "./resolver/resolve.js";
 import type { GraphModel, SpecifierKind } from "./types.js";
 
+// Injected at build time by tsup (see tsup.config.ts `define`).
+declare const __TOPOS_VERSION__: string;
+
 const ALL_KINDS: SpecifierKind[] = [
   "static",
   "reexport",
@@ -21,6 +24,7 @@ const program = new Command();
 
 program
   .name("topos")
+  .version(__TOPOS_VERSION__, "-V, --version", "print the version and exit")
   .description("Topos — visualize cross-file import graphs for TS/React/Vue/Svelte projects.")
   .addHelpText(
     "after",

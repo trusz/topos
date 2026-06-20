@@ -1,4 +1,5 @@
 import { defineConfig } from "tsup";
+import pkg from "./package.json" with { type: "json" };
 
 // Two bundles:
 //  - viewer: a browser IIFE (cytoscape + extensions inlined) that the CLI injects
@@ -22,6 +23,7 @@ export default defineConfig([
     target: "node18",
     outDir: "dist",
     clean: false,
+    define: { __TOPOS_VERSION__: JSON.stringify(pkg.version) },
     banner: { js: "#!/usr/bin/env node" },
   },
 ]);
